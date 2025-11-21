@@ -59,8 +59,9 @@ export const ClickEffects: React.FC = () => {
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const id = Date.now();
-      const x = e.pageX; // Use pageX/Y to account for scrolling
-      const y = e.pageY;
+      // Use clientX/Y because the container is fixed to the viewport
+      const x = e.clientX;
+      const y = e.clientY;
       
       setClicks(prev => [...prev, { id, x, y }]);
       playBellSound();
@@ -71,12 +72,17 @@ export const ClickEffects: React.FC = () => {
       }, 600); // Matches the animation duration (0.6s)
     };
 
-    window.addEventListener('click', handleClick);
-    return () => window.removeEventListener('click', handleClick);
+    // { capture: true } ensures we catch the click event BEFORE it reaches target elements.
+    // This fixes the issue where clicking buttons (which might stopPropagation) wouldn't trigger the effect.
+    window.addEventListener('click', handleClick, { capture: true });
+    return () => window.removeEventListener('click', handleClick, { capture: true });
   }, [playBellSound]);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[9999] overflow-hidden">
+    // fixed inset-0 ensures it covers the entire screen regardless of scroll
+    // z-[99999] ensures it is on top of everything including modals
+    // pointer-events-none ensures clicks pass through to the actual UI elements
+    <div className="fixed inset-0 pointer-events-none z-[99999] overflow-hidden">
       {clicks.map(click => (
         <div
           key={click.id}

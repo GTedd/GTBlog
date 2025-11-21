@@ -1,7 +1,10 @@
+
 export enum Language {
   EN = 'en',
   CN = 'cn',
 }
+
+export type PageView = 'home' | 'about' | 'posts' | 'contact';
 
 export interface BlogPost {
   id: string;
@@ -11,7 +14,6 @@ export interface BlogPost {
   excerpt: {
     [key in Language]: string;
   };
-  // Added content field: An array of strings, where each string is a paragraph
   content: {
     [key in Language]: string[];
   };
@@ -45,6 +47,19 @@ export interface TranslationKeys {
     readMore: string;
     latestPosts: string;
     footer: string;
-    back: string; // Added back button
+    back: string;
+    allCategories: string;
+    noPosts: string;
+  };
+  about: {
+    title: string;
+    description: string[];
+    stats: { label: string; value: string }[];
+  };
+  contact: {
+    title: string;
+    description: string;
+    emailLabel: string;
+    socialLabel: string;
   };
 }

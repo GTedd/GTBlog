@@ -1,3 +1,4 @@
+
 import { Language, BlogPost, TranslationKeys } from './types';
 
 export const TRANSLATIONS: Record<Language, TranslationKeys> = {
@@ -27,7 +28,28 @@ export const TRANSLATIONS: Record<Language, TranslationKeys> = {
       latestPosts: "Recent Dreams",
       footer: "© 2024 Sanctuary of Wisdom. Designed with Dendro energy.",
       back: "Close Dream",
+      allCategories: "All Dreams",
+      noPosts: "No dreams found in this category yet.",
     },
+    about: {
+      title: "About the Gardener",
+      description: [
+        "Welcome to my small corner of the internet. Like Nahida tending to the Sanctuary of Surasthana, I tend to this garden of thoughts and memories.",
+        "I am a traveler exploring the intersection of technology and art, seeking wisdom in everyday life. This blog is a collection of my observations, tutorials, and whimsical musings.",
+        "Here, knowledge is not a resource to be managed, but a song to be shared."
+      ],
+      stats: [
+        { label: "Dreams Recorded", value: "100+" },
+        { label: "Coffee Consumed", value: "∞" },
+        { label: "World Level", value: "8" },
+      ]
+    },
+    contact: {
+      title: "Send a Bird",
+      description: "Have a question or just want to say hello? You can reach me through the ley lines.",
+      emailLabel: "Email Address",
+      socialLabel: "Social Networks",
+    }
   },
   [Language.CN]: {
     nav: {
@@ -55,7 +77,28 @@ export const TRANSLATIONS: Record<Language, TranslationKeys> = {
       latestPosts: "最近的梦",
       footer: "© 2025 智慧的净善宫. 蕴含草元素之力.",
       back: "关闭梦境",
+      allCategories: "所有梦境",
+      noPosts: "该分类下暂无梦境。",
     },
+    about: {
+      title: "关于园丁",
+      description: [
+        "欢迎来到我这互联网的一隅。就像纳西妲照料净善宫一样，我在此照料这片思想与记忆的花园。",
+        "我是一名探索科技与艺术交汇点的旅行者，在日常生活中寻找智慧。这个博客汇集了我的观察、教程和一些异想天开的随想。",
+        "在这里，知识不是需要被管理的资源，而是需要被分享的歌谣。"
+      ],
+      stats: [
+        { label: "记录的梦", value: "100+" },
+        { label: "消耗的咖啡", value: "∞" },
+        { label: "世界等级", value: "8" },
+      ]
+    },
+    contact: {
+      title: "寄送暝彩鸟",
+      description: "有问题或者只想打个招呼？你可以通过地脉联系我。",
+      emailLabel: "电子邮箱",
+      socialLabel: "社交网络",
+    }
   },
 };
 
@@ -139,3 +182,37 @@ export const MOCK_POSTS: BlogPost[] = [
     imageUrl: 'https://picsum.photos/id/88/800/600', 
   },
 ];
+
+/**
+ * =================================================
+ *  🆕 NEW POST TEMPLATE / 新文章模板
+ * =================================================
+ * 
+ * Copy the block below and paste it into the MOCK_POSTS array above.
+ * 复制下方的代码块并粘贴到上方的 MOCK_POSTS 数组中。
+ * 
+ * {
+ *   id: 'unique_id_here', // e.g., '4'
+ *   title: {
+ *     en: 'Title in English',
+ *     cn: '中文标题',
+ *   },
+ *   excerpt: {
+ *     en: 'Short summary for the card.',
+ *     cn: '卡片上显示的简短摘要。',
+ *   },
+ *   content: {
+ *     en: [
+ *       "Paragraph 1...",
+ *       "Paragraph 2..."
+ *     ],
+ *     cn: [
+ *       "第一段内容...",
+ *       "第二段内容..."
+ *     ]
+ *   },
+ *   date: 'YYYY-MM-DD',
+ *   category: 'CategoryName', // e.g., 'Tech', 'Life'
+ *   imageUrl: 'https://picsum.photos/id/100/800/600',
+ * },
+ */

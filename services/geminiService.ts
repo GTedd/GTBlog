@@ -17,7 +17,9 @@ export const consultAkasha = async (query: string, language: 'en' | 'cn'): Promi
     if (!apiKey) {
       return language === 'en'
         ? "API key not configured. Please set VITE_GEMINI_API_KEY in .env.local."
-        : "未配置 API 密钥 请在 .env.local 设置 VITE_GEMINI_API_KEY";
+        : "虚空终端已离线";
+        // "未配置 API 密钥 请在 .env.local 设置 VITE_GEMINI_API_KEY";
+
     }
 
     const ai = new GoogleGenAI({ apiKey });

@@ -30,7 +30,7 @@ const slugFromPath = (path: string) => {
 
 export const loadBlogPosts = (): BlogPost[] => {
   const jsonModules = import.meta.glob('../blogs/**/*.json', { eager: true });
-  const mdModules = import.meta.glob('../blogs/**/*.md', { as: 'raw', eager: true });
+  const mdModules = import.meta.glob('../blogs/**/*.md', { query: '?raw', import: 'default', eager: true });
 
   const jsonPosts: BlogPost[] = Object.values(jsonModules).map((mod: any) => {
     const data = mod?.default ?? mod;

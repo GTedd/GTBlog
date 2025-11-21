@@ -39,7 +39,7 @@ const App: React.FC = () => {
 
   // --- View Components ---
 
-  const PostCard = ({ post, index }: { post: BlogPost; index: number }) => (
+  const PostCard: React.FC<{ post: BlogPost; index: number }> = ({ post, index }) => (
     <article 
       className="group bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(88,182,117,0.15)] transition-all duration-500 border border-white flex flex-col hover:-translate-y-2 cursor-pointer h-full"
       style={{ animationDelay: `${index * 0.1}s` }}

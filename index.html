@@ -102,11 +102,11 @@
         color: #1e4728;
       }
     </style>
-    <!-- process.env 的 Polyfill，用于防止在构建时未替换变量导致浏览器运行时崩溃 -->
+    <!-- Polyfill for process.env to prevent runtime crashes in browser if variables aren't replaced by build -->
     <script>
       window.process = window.process || { env: {} };
     </script>
-  <!-- <script type="importmap">
+  <script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",
@@ -115,7 +115,7 @@
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
   }
 }
-</script> -->
+</script>
 </head>
   <body class="bg-nahida-base text-nahida-text font-sans antialiased overflow-x-hidden">
     <div id="root"></div>

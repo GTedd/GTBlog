@@ -102,12 +102,16 @@
         color: #1e4728;
       }
     </style>
+    <!-- Polyfill for process.env to prevent runtime crashes in browser if variables aren't replaced by build -->
+    <script>
+      window.process = window.process || { env: {} };
+    </script>
   <script type="importmap">
 {
   "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
   }
 }
@@ -115,5 +119,6 @@
 </head>
   <body class="bg-nahida-base text-nahida-text font-sans antialiased overflow-x-hidden">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

@@ -102,7 +102,7 @@
         color: #1e4728;
       }
     </style>
-    <!-- Polyfill for process.env to prevent runtime crashes in browser if variables aren't replaced by build -->
+    <!-- process.env 的 Polyfill，用于防止在构建时未替换变量导致浏览器运行时崩溃 -->
     <script>
       window.process = window.process || { env: {} };
     </script>

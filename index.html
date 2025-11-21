@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sanctuary of Wisdom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Nunito:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['Lora', 'serif'],
+              sans: ['Nunito', 'sans-serif'],
+              script: ['Sacramento', 'cursive'],
+            },
+            colors: {
+              nahida: {
+                base: '#fdfcf8',
+                primary: '#58b675', // Vibrant green
+                dark: '#1e4728',
+                accent: '#9bc98e',
+                gold: '#e6c35b',
+                goldHover: '#d4b045',
+                text: '#2c3e50',
+                muted: '#8ca893',
+                glow: '#cfffd9', // For magical glowing effects
+              }
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'float-delayed': 'float 6s ease-in-out 3s infinite',
+              'fade-in': 'fadeIn 1s ease-out forwards',
+              'fade-out': 'fadeOut 1s ease-out forwards',
+              'spin-slow': 'spin 20s linear infinite',
+              'spin-reverse-slow': 'spinReverse 25s linear infinite',
+              'pulse-slow': 'pulseSlow 4s ease-in-out infinite',
+              'bloom': 'bloom 2s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-15px)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeOut: {
+                '0%': { opacity: '1' },
+                '100%': { opacity: '0', visibility: 'hidden' },
+              },
+              spinReverse: {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(-360deg)' },
+              },
+              pulseSlow: {
+                '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+                '50%': { opacity: '1', transform: 'scale(1.05)' },
+              },
+              bloom: {
+                '0%, 100%': { boxShadow: '0 0 10px #58b675' },
+                '50%': { boxShadow: '0 0 25px #cfffd9, 0 0 10px #58b675' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fdfcf8; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #9bc98e, #58b675); 
+        border-radius: 10px;
+      }
+      
+      /* Glass effect utility */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(230, 195, 91, 0.3);
+      }
+      
+      /* Text selection color */
+      ::selection {
+        background: #cfffd9;
+        color: #1e4728;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-nahida-base text-nahida-text font-sans antialiased overflow-x-hidden">
+    <div id="root"></div>
+  </body>
+</html>

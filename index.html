@@ -39,6 +39,7 @@
               'spin-reverse-slow': 'spinReverse 25s linear infinite',
               'pulse-slow': 'pulseSlow 4s ease-in-out infinite',
               'bloom': 'bloom 2s ease-in-out infinite',
+              'click-expand': 'clickExpand 0.6s ease-out forwards',
             },
             keyframes: {
               float: {
@@ -64,6 +65,10 @@
               bloom: {
                 '0%, 100%': { boxShadow: '0 0 10px #58b675' },
                 '50%': { boxShadow: '0 0 25px #cfffd9, 0 0 10px #58b675' },
+              },
+              clickExpand: {
+                '0%': { transform: 'scale(0.5) rotate(0deg)', opacity: '1' },
+                '100%': { transform: 'scale(2) rotate(45deg)', opacity: '0' },
               }
             }
           }

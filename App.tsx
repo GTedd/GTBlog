@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { TRANSLATIONS, MOCK_POSTS } from './constants';
 import { Language, BlogPost, PageView } from './types';
 import { AkashaTerminal } from './components/AkashaTerminal';
 import { BackgroundEffects } from './components/BackgroundEffects';
 import { WelcomeScreen } from './components/WelcomeScreen';
+import { ClickEffects } from './components/ClickEffects';
 
 const App: React.FC = () => {
   const [lang, setLang] = useState<Language>(Language.EN);
@@ -43,7 +43,11 @@ const App: React.FC = () => {
     <article 
       className="group bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(88,182,117,0.15)] transition-all duration-500 border border-white flex flex-col hover:-translate-y-2 cursor-pointer h-full"
       style={{ animationDelay: `${index * 0.1}s` }}
-      onClick={() => setSelectedPost(post)}
+      onClick={(e) => {
+        e.stopPropagation(); // Let the card click handler run but also bubble for effect if desired, 
+        // but here we specifically want to open the post.
+        setSelectedPost(post);
+      }}
     >
       <div className="relative overflow-hidden h-64 shrink-0">
         <div className="absolute inset-0 bg-nahida-dark/10 group-hover:bg-transparent transition-colors z-10"></div>
@@ -91,7 +95,7 @@ const App: React.FC = () => {
           </p>
           <div className="animate-fade-in flex justify-center">
             <button 
-              onClick={() => handleNavClick('posts')}
+              onClick={(e) => { e.stopPropagation(); handleNavClick('posts'); }}
               className="group relative bg-nahida-dark text-white px-10 py-4 rounded-full font-bold shadow-[0_10px_20px_rgba(30,71,40,0.2)] hover:shadow-[0_15px_30px_rgba(30,71,40,0.3)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-3">
@@ -137,7 +141,7 @@ const App: React.FC = () => {
                  return (
                   <button
                     key={cat}
-                    onClick={() => setSelectedCategory(cat)}
+                    onClick={(e) => { e.stopPropagation(); setSelectedCategory(cat); }}
                     className={`px-6 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${
                       isActive 
                         ? 'bg-nahida-primary text-white border-nahida-primary shadow-lg scale-105' 
@@ -238,6 +242,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <ClickEffects />
       {!hasEntered && <WelcomeScreen onEnter={() => setHasEntered(true)} />}
       
       <div className={`min-h-screen relative overflow-x-hidden flex flex-col transition-opacity duration-1000 ${hasEntered ? 'opacity-100' : 'opacity-0 h-screen overflow-hidden'}`}>
@@ -249,7 +254,7 @@ const App: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-20 items-center">
               {/* Logo */}
-              <div className="flex items-center gap-3 cursor-pointer group" onClick={() => handleNavClick('home')}>
+              <div className="flex items-center gap-3 cursor-pointer group" onClick={(e) => { e.stopPropagation(); handleNavClick('home'); }}>
                 <div className="relative w-10 h-10 flex items-center justify-center">
                    <div className="absolute inset-0 bg-nahida-primary/20 rounded-full animate-pulse"></div>
                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-nahida-primary to-nahida-accent flex items-center justify-center text-white shadow-md group-hover:rotate-180 transition-transform duration-700">
@@ -274,7 +279,7 @@ const App: React.FC = () => {
                 ].map((item) => (
                   <button 
                     key={item.label} 
-                    onClick={() => handleNavClick(item.view as PageView)}
+                    onClick={(e) => { e.stopPropagation(); handleNavClick(item.view as PageView); }}
                     className={`text-sm font-serif font-medium transition-colors relative group py-2 ${
                       currentView === item.view ? 'text-nahida-primary' : 'text-nahida-text hover:text-nahida-primary'
                     }`}
@@ -290,7 +295,7 @@ const App: React.FC = () => {
               {/* Actions */}
               <div className="flex items-center gap-4">
                 <button 
-                  onClick={toggleLang}
+                  onClick={(e) => { e.stopPropagation(); toggleLang(); }}
                   className="px-4 py-1.5 rounded-full border border-nahida-gold/30 bg-white/50 text-nahida-dark text-xs font-bold hover:bg-nahida-gold/10 hover:border-nahida-gold transition-all"
                 >
                   {lang === Language.EN ? 'EN / 中文' : '中文 / EN'}
@@ -313,7 +318,7 @@ const App: React.FC = () => {
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 animate-fade-in">
             <div 
               className="absolute inset-0 bg-nahida-dark/30 backdrop-blur-sm"
-              onClick={() => setSelectedPost(null)}
+              onClick={(e) => { e.stopPropagation(); setSelectedPost(null); }}
             ></div>
             
             <div className="relative bg-nahida-base w-full max-w-4xl h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col border border-white/50">
@@ -323,7 +328,7 @@ const App: React.FC = () => {
                {/* Controls */}
                <div className="absolute top-6 right-8 z-10 flex gap-3">
                   <button 
-                    onClick={() => setSelectedPost(null)}
+                    onClick={(e) => { e.stopPropagation(); setSelectedPost(null); }}
                     className="w-12 h-12 rounded-full bg-white/80 backdrop-blur flex items-center justify-center hover:bg-nahida-primary hover:text-white transition-all shadow-md group"
                   >
                     <span className="group-hover:rotate-90 transition-transform duration-300 text-xl">✕</span>

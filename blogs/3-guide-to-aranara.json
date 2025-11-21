@@ -1,0 +1,23 @@
+{
+  "id": "3",
+  "title": { "en": "A Guide to Aranara", "cn": "兰那罗指南" },
+  "excerpt": {
+    "en": "Meeting the small spirits of the forest and learning their whimsical songs.",
+    "cn": "遇见森林中的小精灵，学习它们那异想天开的歌谣。"
+  },
+  "content": {
+    "en": [
+      "If you walk deep enough into the forest and your heart is pure, you might see a small, round figure with a leafy hat. These are the Aranara, the children of the forest.",
+      "They love music, so bring a lyre. They love stories, so bring your memories. But most of all, they value kindness.",
+      "Remember: the forest remembers everything."
+    ],
+    "cn": [
+      "如果你走进森林深处，并且心地纯洁，你可能会看到一个戴着叶子帽子的小圆身影。它们是兰那罗，森林的孩子。",
+      "它们喜欢音乐，所以带上你的琴。它们喜欢故事，所以带上你的记忆。但最重要的是，它们珍视善良。",
+      "记住：森林会记住一切。"
+    ]
+  },
+  "date": "2024-05-15",
+  "category": "Guide",
+  "imageUrl": "https://picsum.photos/id/88/800/600"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "2",
+  "title": { "en": "Analyzing Dreams", "cn": "梦境解析" },
+  "excerpt": {
+    "en": "Dreams are not just random images; they are the processing of our deepest emotions.",
+    "cn": "梦不仅仅是随机的图像，它们是我们最深层情感的处理过程。"
+  },
+  "content": {
+    "en": [
+      "The Akasha Terminal once harvested dreams, but now we understand their true value. Dreams are the mind's way of organizing chaos into order.",
+      "When we sleep, our subconscious paints with colors we've never seen and speaks in riddles we must decipher. It is a personal domain where the laws of physics do not apply, only the laws of emotion.",
+      "Do not fear the nightmare, for it is merely a question your heart is asking. Do not cling to the sweet dream, for it is a fleeting comfort. Observe them all, and you will know yourself."
+    ],
+    "cn": [
+      "虚空终端曾经收割梦境，但现在我们明白了它们真正的价值。梦是心灵将混乱整理为秩序的方式。",
+      "当我们沉睡时，潜意识用我们从未见过的颜色作画，用我们需要解读的谜语说话。这是一个私人领域，物理定律不适用，适用的只有情感定律。",
+      "不要害怕噩梦，因为它只是你内心提出的一个问题。不要执着于美梦，因为那是转瞬即逝的慰藉。观察它们，你将认识你自己。"
+    ]
+  },
+  "date": "2025-05-18",
+  "category": "Philosophy",
+  "imageUrl": "https://picsum.photos/id/104/800/600"
+}

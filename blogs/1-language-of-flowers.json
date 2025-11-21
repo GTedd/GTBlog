@@ -1,0 +1,23 @@
+{
+  "id": "1",
+  "title": { "en": "The Language of Flowers", "cn": "花语的秘密" },
+  "excerpt": {
+    "en": "Understanding what the forest whispers when the wind blows through the leaves.",
+    "cn": "当风吹过树叶时，森林在低语什么？解读自然的秘密语言。"
+  },
+  "content": {
+    "en": [
+      "Have you ever listened closely to the rustling leaves? In Sumeru, we believe that every plant has a memory, a story to tell. The wind carries these stories across the mountains, whispering secrets to those who know how to listen.",
+      "Scientific research shows that plants communicate through chemical signals, but I prefer the romantic interpretation: they are singing a slow, ancient song about the sun, the rain, and the earth.",
+      "Next time you see a flower blooming, pause for a moment. It might be greeting you."
+    ],
+    "cn": [
+      "你是否曾仔细倾听过树叶的沙沙声？在须弥，我们相信每一株植物都有记忆，都有故事要诉说。风将这些故事带过群山，向懂得倾听的人低语着秘密。",
+      "科学研究表明，植物通过化学信号进行交流，但我更喜欢浪漫的解读：它们正在唱着一首关于太阳、雨水和大地古老而缓慢的歌。",
+      "下次当你看到花朵盛开时，请停下来片刻。它可能正在向你问好。"
+    ]
+  },
+  "date": "2024-05-20",
+  "category": "Nature",
+  "imageUrl": "https://picsum.photos/id/28/800/600"
+}

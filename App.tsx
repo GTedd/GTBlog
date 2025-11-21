@@ -1,25 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { TRANSLATIONS, MOCK_POSTS } from './constants';
+import { TRANSLATIONS } from './i18n';
 import { Language, BlogPost, PageView } from './types';
 import { AkashaTerminal } from './components/AkashaTerminal';
 import { BackgroundEffects } from './components/BackgroundEffects';
 import { WelcomeScreen } from './components/WelcomeScreen';
 import { ClickEffects } from './components/ClickEffects';
+import { loadBlogPosts } from './services/blogLoader';
 
 const App: React.FC = () => {
-  const [lang, setLang] = useState<Language>(Language.EN);
+  const [lang, setLang] = useState<Language>(Language.CN);
   const [hasEntered, setHasEntered] = useState(false);
   const [currentView, setCurrentView] = useState<PageView>('home');
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [posts, setPosts] = useState<BlogPost[]>([]);
 
   const t = TRANSLATIONS[lang];
 
-  // Extract unique categories from posts
-  const categories = ['All', ...new Set(MOCK_POSTS.map(post => post.category))];
+  useEffect(() => {
+    const saved = localStorage.getItem('lang');
+    if (saved === Language.EN || saved === Language.CN) {
+      setLang(saved as Language);
+    }
+  }, []);
+
+  useEffect(() => {
+    const loaded = loadBlogPosts();
+    setPosts(loaded);
+  }, []);
+
+  const categories = ['All', ...new Set(posts.map(post => post.category))];
 
   const toggleLang = () => {
-    setLang(prev => prev === Language.EN ? Language.CN : Language.EN);
+    setLang(prev => {
+      const next = prev === Language.EN ? Language.CN : Language.EN;
+      localStorage.setItem('lang', next);
+      return next;
+    });
   };
 
   const handleNavClick = (view: PageView) => {
@@ -117,7 +134,7 @@ const App: React.FC = () => {
           <div className="h-[1px] bg-gradient-to-r from-transparent via-nahida-gold/50 to-transparent flex-grow"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {MOCK_POSTS.slice(0, 3).map((post, index) => (
+          {posts.slice(0, 3).map((post, index) => (
             <PostCard key={post.id} post={post} index={index} />
           ))}
         </div>
@@ -127,8 +144,8 @@ const App: React.FC = () => {
 
   const PostsView = () => {
     const filteredPosts = selectedCategory === 'All' || selectedCategory === t.common.allCategories
-      ? MOCK_POSTS 
-      : MOCK_POSTS.filter(p => p.category === selectedCategory);
+      ? posts 
+      : posts.filter(p => p.category === selectedCategory);
 
     return (
       <div className="max-w-7xl mx-auto px-4 py-32 min-h-screen">
@@ -365,11 +382,32 @@ const App: React.FC = () => {
                     </div>
 
                     <div className="prose prose-lg prose-headings:font-serif prose-headings:text-nahida-dark text-nahida-text/80 leading-loose font-serif">
-                       {selectedPost.content[lang].map((paragraph, idx) => (
-                         <p key={idx} className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:text-nahida-primary first-letter:float-left first-letter:mr-3 first-letter:mt-[-10px]">
-                           {paragraph}
-                         </p>
-                       ))}
+                       {selectedPost.content[lang].map((paragraph, idx) => {
+                         const trimmed = paragraph.trim();
+                         if (trimmed.startsWith('image:')) {
+                           const src = trimmed.replace(/^image:\s*/, '');
+                           return (
+                             <div key={idx} className="my-8">
+                               <img src={src} alt="embedded" className="w-full rounded-2xl shadow-md border border-nahida-gold/20" />
+                             </div>
+                           );
+                         }
+                         if (trimmed.startsWith('audio:')) {
+                           const src = trimmed.replace(/^audio:\s*/, '');
+                           return (
+                             <div key={idx} className="my-8">
+                               <audio controls className="w-full">
+                                 <source src={src} />
+                               </audio>
+                             </div>
+                           );
+                         }
+                         return (
+                           <p key={idx} className="mb-6 first-letter:text-5xl first-letter:font-serif first-letter:text-nahida-primary first-letter:float-left first-letter:mr-3 first-letter:mt-[-10px]">
+                             {paragraph}
+                           </p>
+                         );
+                       })}
                     </div>
 
                     {/* End Ornament */}
